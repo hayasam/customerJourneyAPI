@@ -8,27 +8,28 @@ public class RestAPIController {
 
     @Autowired
     private CustomerJourneyCommandService journeyCommandService;
+    private CustomerJourneyQueryService journeyQueryService;
 
     @RequestMapping(value = "/customerjourneys/v1", method = RequestMethod.POST)
-    public CustomerJourney createNewCustomerJourney(@RequestBody CustomerJourney newJourneyRequest) {
+    public CustomerJourneyCommand createNewCustomerJourney(@RequestBody CustomerJourneyCommand newJourneyRequest) {
         System.out.println(newJourneyRequest);
         return journeyCommandService.createNewJourney(newJourneyRequest);
     }
 //
     @RequestMapping(value = "/customerjourneys/v1", method = RequestMethod.GET)
-    public CustomerJourney process2() {
-        return new CustomerJourney.JourneyBuilder()
+    public CustomerJourneyCommand getAllCustomerJourneys() {
+        return new CustomerJourneyCommand.JourneyCommandBuilder()
                 .processType("something")
                 .build();
     }
-//
-//    @RequestMapping(value = "/customerjourneys/v1/{id}", method = RequestMethod.GET)
-//    public CustomerJourney process3(@PathVariable String id) {
-//        return new CustomerJourney();
-//    }
-//
-//    @RequestMapping(value = "/customerjourneys.v1/{id}/phase", method = RequestMethod.POST)
-//    public CustomerJourney process4(@RequestParam(value="name", defaultValue="World") String name) {
-//        return new CustomerJourney();
-//    }
+
+    @RequestMapping(value = "/customerjourneys/v1/{id}", method = RequestMethod.GET)
+    public CustomerJourneyQuery process3(@PathVariable String id) {
+        return journeyQueryService.getCustomerJourneyById(id);
+    }
+
+    @RequestMapping(value = "/customerjourneys/v1/{id}/step", method = RequestMethod.POST)
+    public void CreateNewStep(@PathVariable String id, @RequestBody Step stepRequest) {
+        journeyCommandService.createNewStep(id, stepRequest);
+    }
 }

@@ -3,7 +3,7 @@ package draft;
 import javafx.util.Builder;
 
 public class Step {
-
+    private String stepId;
     private String stepName;
     private String channel;
     private String startDate;
@@ -12,6 +12,8 @@ public class Step {
     public Step(){}
 
     private Step(StepBuilder builder){
+        super();
+        this.stepId= builder.stepId;
         this.stepName = builder.stepName;
         this.channel = builder.channel;
         this.startDate = builder.startDate;
@@ -34,12 +36,21 @@ public class Step {
         return link;
     }
 
+    public String getStepId() {
+        return stepId;
+    }
+
     public static class StepBuilder implements Builder{
+        private String stepId;
         private String stepName;
         private String channel;
         private String startDate;
         private String link;
 
+        public StepBuilder stepId(String stepId){
+            this.stepId=stepId;
+            return this;
+        }
         public StepBuilder stepName(String stepName){
             this.stepName = stepName;
             return this;
