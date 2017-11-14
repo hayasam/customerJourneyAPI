@@ -1,5 +1,6 @@
 package draft;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -7,8 +8,8 @@ import java.util.UUID;
 @Service
 public class CustomerJourneyCommandService {
 
-//    @Autowired
-//    private CustomerJourneyRepository journeyRepository;
+    @Autowired
+    private CustomerJourneyRepository journeyRepository;
 
     public CustomerJourneyCommand createNewJourney(CustomerJourneyCommand customerJourneyCommandRequest){
         CustomerJourneyCommand customerJourneyCommandInstance = new CustomerJourneyCommand.JourneyCommandBuilder()
@@ -20,7 +21,7 @@ public class CustomerJourneyCommandService {
                 .startDate(customerJourneyCommandRequest.getStartDate())
                 .step(customerJourneyCommandRequest.getStep())
                 .build();
-//        journeyRepository.save(customerJourneyCommandInstance);
+        journeyRepository.save(customerJourneyCommandInstance);
         return customerJourneyCommandInstance;
     }
 
