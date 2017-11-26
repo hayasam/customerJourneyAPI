@@ -7,10 +7,10 @@ public class JourneyQuery {
     private String processType;
     private Party party;
     private String startDate;
-    private Step step;
+    private Phase phase;
     private Product product;
     private String contractNumber;
-    private List<Step> stepHistory;
+    private List<Phase> phaseHistory;
 
     public JourneyQuery(){}
 

@@ -11,17 +11,18 @@ public class JourneyQueryService {
 
 
     @Autowired
-    private JourneyRepository journeyRepository;
+    private ProcessRepository processRepository;
+    private StepRepository stepRepository;
 
-    public JourneyModel getJourneyById(String id) {
-        JourneyModel response = journeyRepository.findOne(id);
+    public Process getJourneyById(int id) {
+        Process response = processRepository.findOne(id);
         return response;
 }
 
-    public List<JourneyModel> getAllJourneys(){
-        List<JourneyModel> journeys = new ArrayList<>();
-        journeyRepository.findAll()
-        .forEach(journeys::add);
+    public List<Journey> getAllJourneys(){
+        List<Journey> journeys = new ArrayList<>();
+//        journeyRepository.findAll()
+//        .forEach(journeys::add);
         return journeys;
     }
 }

@@ -7,12 +7,24 @@ import org.springframework.stereotype.Service;
 public class JourneyCommandService {
 
     @Autowired
-    private JourneyRepository journeyRepository;
+    private ProcessRepository processRepository;
 
-    public void createNewJourney(JourneyModel request){
-        journeyRepository.save(request);
+    @Autowired
+    private StepRepository stepRepository;
+
+    @Autowired
+    private JourneyToProcessEntity toProcessConverter;
+
+    @Autowired
+    private JourneyToStepEntity toStepConverter;
+
+    public void createNewJourney(Journey request){
+        Process newProcess = toProcessConverter.convert(request);
+        Step newStep = toStepConverter.convert(request);
+        processRepository.save(newProcess);
+        stepRepository.save(newStep);
     }
 
-    public void createNewStep(String id, Step stepRequest) {
+    public void createNewStep(String id, Phase phaseRequest) {
     }
 }

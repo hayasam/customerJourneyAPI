@@ -14,23 +14,23 @@ public class JourneyAPIController {
     @Autowired
     private JourneyQueryService journeyQueryService;
 
-    @RequestMapping(value = "/customerjourneys/v1", method = RequestMethod.POST)
-    public void createNewJourney(@RequestBody JourneyModel newJourneyRequest) {
+    @RequestMapping(value = "/journeys/v1", method = RequestMethod.POST)
+    public void createNewJourney(@RequestBody Journey newJourneyRequest) {
         journeyCommandService.createNewJourney(newJourneyRequest);
     }
 
-    @RequestMapping(value = "/customerjourneys/v1", method = RequestMethod.GET)
-    public List<JourneyModel> getAllJourneys() {
+    @RequestMapping(value = "/journeys/v1", method = RequestMethod.GET)
+    public List<Journey> getAllJourneys() {
        return journeyQueryService.getAllJourneys();
     }
 
-    @RequestMapping(value = "/customerjourneys/v1/{id}", method = RequestMethod.GET)
-    public JourneyModel getJourneyById(@PathVariable String id) {
-        return journeyQueryService.getJourneyById(id);
+    @RequestMapping(value = "/journeys/v1/{id}", method = RequestMethod.GET)
+    public Process getJourneyById(@PathVariable String id) {
+        return journeyQueryService.getJourneyById(Integer.parseInt(id));
     }
 //
 //    @RequestMapping(value = "/customerjourneys/v1/{id}/step", method = RequestMethod.POST)
-//    public void CreateNewStep(@PathVariable String id, @RequestBody Step stepRequest) {
+//    public void CreateNewStep(@PathVariable String id, @RequestBody Phase stepRequest) {
 //        journeyCommandService.createNewStep(id, stepRequest);
 //    }
 }
